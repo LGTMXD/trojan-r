@@ -23,7 +23,8 @@ jobs:
       - name: build
         run: |
           apt-get install build-essential -y
-          bash <(curl -sL https://sh.rustup.rs)
+          echo "1
+          " > bash <(curl -sL https://sh.rustup.rs)
           cargo install cross
           cross build --target ${{ matrix.target }} --release
       - name: rename and compress artifacts
