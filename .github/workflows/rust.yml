@@ -19,19 +19,12 @@ jobs:
         with:
           submodules: true
 
-      - name: show last commit
-        run: |
-          git show --summary
-      - name: install rust toolchain
-        uses: hecrj/setup-rust-action@v1
-        with:
-          rust-version: nightly
 
-      - name: install cross
-        run: |
-          cargo install cross
       - name: build
         run: |
+          apt-get install build-essential -y
+          bash <(curl -sL https://sh.rustup.rs)
+          cargo install cross
           cross build --target ${{ matrix.target }} --release
       - name: rename and compress artifacts
         run: |
